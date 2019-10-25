@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.linkedin_oauth2',
     'allauth.socialaccount.providers.discord',
     'django.contrib.sites',
+    'widget_tweaks',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
