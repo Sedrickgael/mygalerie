@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.linkedin',
+    'allauth.socialaccount.providers.linkedin_oauth2',
+    'allauth.socialaccount.providers.discord',
     'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,6 +54,23 @@ INSTALLED_APPS = [
 ]
 
 ACCOUNT_DEFAULT_HTTP_PROTOCOL ="https"
+
+SOCIALACCOUNT_PROVIDERS = {
+    'linkedin': {
+        'SCOPE': [
+            'r_basicprofile',
+            'r_emailaddress'
+        ],
+        'PROFILE_FIELDS': [
+            'id',
+            'first-name',
+            'last-name',
+            'email-address',
+            'picture-url',
+            'public-profile-url',
+        ]
+    }
+}
 
 SITE_ID = 1
 
