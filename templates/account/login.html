@@ -8,11 +8,11 @@
 
 {% block content %}
 
-<h1>{% trans "Sign In" %}</h1>
+<!-- <h1>{% trans "Sign In" %}</h1> -->
 
 {% get_providers as socialaccount_providers %}
 
-{% if socialaccount_providers %}
+<!-- {% if socialaccount_providers %}
 <p>{% blocktrans with site.name as site_name %}Please sign in with one
 of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
 for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
@@ -32,7 +32,7 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 {% else %}
 <p>{% blocktrans %}If you have not created an account yet, then please
 <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
+{% endif %} -->
 
 	
                     <!-- end header -->
@@ -40,7 +40,7 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
                 <div class="wrap-contact100">
                     <form class="contact100-form validate-form"   method="POST" action="{% url 'account_login' %}">
                         <span class="contact100-form-title">
-                            Say Hello!
+                          {% trans "Sign In" %}
                         </span>
                         {% csrf_token %}
                         {% for hidden in form.hidden_fields %}
@@ -55,13 +55,13 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
                         {% endif %}    
                         <div class="wrap-input100 validate-input" data-validate="Name is required">
                             <span class="label-input100">Username</span>
-                            {{form.login}}
+                            <input id="{{ form.login.id_for_label }}" name="{{ form.login.name }}" type="text" class="input100 {% if form.login.errors %}is-invalid{% endif %}"  placeholder="Nom d'utilisateur" required="" value="{{ form.login.value|default:'' }}" />
                             <span class="focus-input100"></span>
                         </div>
     
                         <div class="wrap-input100 validate-input" data-validate = "Valid password is required">
                             <span class="label-input100">Mot de passe </span>
-                            {{form.password}}
+                            <input id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" type="password" class="input100 {% if form.password.errors %}is-invalid{% endif %}"  placeholder="xxxxxxxxxxx" required="" value="{{ form.password.value|default:'' }}" />
                             <span class="focus-input100"></span>
                         </div>
                         {% if redirect_field_value %}
@@ -70,14 +70,13 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
                           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                           <span class="focus-input100"></span>
                         </div>
-
-                        {{form.remember}}
                         {% endif %}
+                        <center>
                         <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                        <p>Pas de compte?<a href="{{ signup_url }}"> Créer un compte</a>.</p></center>
                         <!-- <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
                         </form>		
      -->
-                        
     
                         <!-- <div class="wrap-input100 validate-input" data-validate = "Message is required">
                             <span class="label-input100">Message</span>
@@ -99,11 +98,11 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
                         <div class="social text-center">
                           <ul>
                             <li style="color: black">Ou connectez-vous avec</li><br><br>
-                            <li><a href="#" class="facebook"><span class="fa fa-facebook"></span></a></li>
-                            <li><a href="#" class="twitter"><span class="fa fa-twitter"></span></a></li>
-                            <li><a href="#" class="google"><span class="fa fa-google"></span></a></li>
-                            <li><a href="#" class="discord"><span class="fa fa-discord"></span></a></li>
-                            <li><a href="#" class="linkedin"><span class="fa fa-linkedin"></span></a></li>
+                            <li><a title="Facebook" href="/accounts/facebook/login/?process=login" class="facebook"><span class="fa fa-facebook"></span></a></li>
+                            <li><a title="Github" href="/accounts/github/login/?process=login" class="github"><span class="fa fa-github"></span></a></li>
+                            <li><a title="Google" href="/accounts/google/login/?process=login" class="google"><span class="fa fa-google"></span></a></li>
+                            <li><a title="Discord" href="/accounts/discord/login/?process=login" class="discord"><span class="fa fa-cc-discover"></span></a></li>
+                            <li><a title="LinkedIn" href="/accounts/linkedin_oauth2/login/?process=login" class="linkedin"><span class="fa fa-linkedin"></span></a></li>
                           </ul>
                         </div>
                     </form>

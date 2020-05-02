@@ -1,21 +1,76 @@
 {% extends "account/base.html" %}
 
 {% load i18n %}
+{% load widget_tweaks %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+<!-- <h1>{% trans "Sign Up" %}</h1> -->
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+<!-- <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p> -->
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+<!-- <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
   {{ form.as_p }}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
   <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+</form> -->
+<div class="container-contact100">
+  <div class="wrap-contact100">
+    <form class="contact100-form validate-form" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      <span class="contact100-form-title">
+        {% trans "Signup" %}
+      </span>
+      {% csrf_token %}
+
+      {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+
+      <!-- <div class="wrap-input100 validate-input" data-validate="Email is required">
+        <span class="label-input100">Email</span>
+        {{ form.email }}
+        <span class="focus-input100"></span>
+      </div> -->
+
+      {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+      {% endfor %}
+
+      {% for field in form.visible_fields %}
+      <div class="wrap-input100 validate-input" data-validate="{{ field.label }} is required">
+        <span for="{{ field.id_for_label }}" class="label-input100">{{ field.label }}</span>
+          {{ field|add_class:'input100' }}
+          <span class="focus-input100"></span>
+          {% for error in field.errors %}
+            <div class="alert alert-danger">{{ error }}</div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+
+      
+      <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+      <div class="container-contact100-form-btn">
+        <div class="wrap-contact100-form-btn">
+          <div class="contact100-form-bgbtn"></div>
+          <button class="contact100-form-btn">
+            <span>
+              {% trans "Sign Up" %}
+              <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<div id="dropDownSelect1"></div>
 
 {% endblock %}

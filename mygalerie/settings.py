@@ -118,7 +118,7 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400 # 1 day in seconds
 ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
-LOGIN_REDIRECT_URL = 'Home' 
+LOGIN_REDIRECT_URL = 'Accueil' 
 # redirects to /accounts/profile by default
 
 
@@ -185,7 +185,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '../media_cdn')
 STATIC_ROOT = os.path.join(BASE_DIR, '../static_cdn')
 
 
-CRISPY_TEMPLATE_PACK = 'uni_form'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -818,8 +818,8 @@ img {
 .social a.discord{
     background: #8161db;
 }
-.social a.twitter{
-    background: #1da1f2;
+.social a.github{
+    background: #797c7e;
 }
 .social a.linkedin {
     background: #00a0dc;
@@ -839,4 +839,8 @@ img {
 	-moz-border-radius: 50%;
 	-ms-border-radius: 50%;
 	-o-border-radius: 50%;
+}
+
+a{
+    text-decoration: underline;
 }

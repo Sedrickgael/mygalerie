@@ -56,14 +56,32 @@
 					</ul>
 					
 					
+					{% if not user.is_authenticated %}
 					<ul class="navbar-nav justify-content-end ml-auto">
 						<li class="nav-item">
-								<a href="{% url 'inscription' %}"><button type="button" class="btn btn-warning ml-md-3">Inscription</button></a>
+								<a href="{% url 'account_signup' %}"><button type="button" class="btn btn-warning ml-md-3">Inscription</button></a>
 						</li>
 						<li class="nav-item">
-								<a ><button type="button" class="btn btn-success ml-md-3">Connexion</button></a>
+								<a  href="{% url 'account_login' %}"><button type="button" class="btn btn-success ml-md-3">Connexion</button></a>
 						</li>
 					</ul>
+					{% endif %}
+					{% if user.is_authenticated %}
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							{{ user.username }}
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						 <a class="dropdown-item" href="{% url 'Profile' %}">Profile</a>
+						<a class="dropdown-item" href="{% url 'Dashboard' %}">Dashboard</a>
+						<a class="dropdown-item" href="{% url 'account_change_password' %}">Change password</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+						</div>
+					</li>
+					{% endif %}
+
+
 				</div>
 			</nav>
         </div>
